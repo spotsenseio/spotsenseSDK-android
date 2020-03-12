@@ -1,0 +1,45 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spotsense">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application android:name="com.spotsense.SpotSenseSDKApplication"         android:usesCleartextTraffic="true">
+        <activity android:name="com.spotsense.utils.sportSenseGeofencing.SpotSencePermissionActivity"
+            android:theme="@style/TransparentTheme"></activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <receiver android:name="com.spotsense.utils.sportSenseGeofencing.PermissionReciver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.spotsense.utils.sportSenseGeofencing.SpotSenseGeofenceBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name="com.spotsense.utils.sportSenseGeofencing.SpotSenseGeofenceTransitionsJobIntentService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+
+        <!-- Foreground services in Q+ require type. -->
+        <service
+            android:name="com.spotsense.LocationUpdatesService"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false"
+            android:foregroundServiceType="location" />
+        <!--
+                android:stopWithTask="false"-->
+    </application>
+</manifest>

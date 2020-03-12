@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SpotSenceSDK</string>
+    <string name="add_geofencing">Add Geofencing</string>
+    <string name="exit_geofencing">Exit Geofencing</string>
+    <string name="remove_geofencing">Remove Geofencing</string>
+
+    <string name="please_wait">Please wait</string>
+
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+</resources>
