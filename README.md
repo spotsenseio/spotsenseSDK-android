@@ -30,12 +30,14 @@ SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replac
     public void getSpotSenceBeaconData(String GeofenceTransactions, String geofenceTransitionDetails) {
     }
 });
+```
 
 
 4. start geofence tracking and location tracking using below function
 
+```java
 spotSence.start();
-
+```
 
 5. Select your new app and create a rule in the SpotSense Dashboard
 5. Test your rule out in the Android device
