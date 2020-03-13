@@ -5,10 +5,14 @@
 1. Create an app in the [SpotSense Dashboard](http://dashboard.spotsense.io)
 2. Download the SpotSense SDK
     Download the SpotSenseSDK via GitHub or dependency by doing the following
-
-   dependencies {
-      implementation 'com.spotsenseio:spotsense:1.0.0'
-   }
+    
+```groovy
+dependencies {
+    ...
+     implementation 'com.spotsenseio:spotsense:1.0.0'
+    ...
+}
+```
    
     
     
