@@ -7,6 +7,7 @@ install {
             packaging 'aar'
             groupId publishedGroupId
             artifactId artifact
+           
 
             name libraryName
             description libraryDescription
@@ -58,9 +59,9 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
+
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
-
     configurations = ['archives']
     pkg {
         repo = bintrayRepo
@@ -77,4 +78,5 @@ bintray {
             desc = libraryDescription
         }
     }
+     override = true
 }
