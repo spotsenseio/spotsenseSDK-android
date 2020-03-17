@@ -22,7 +22,7 @@ import com.spotsense.interfaces.GetSpotSenseData;
 import com.spotsense.utils.sportSenseGeofencing.SpotSence;
 
 
-SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replace with your client Secret", new                             GetSpotSenseData() {
+SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replace with your client Secret", new GetSpotSenseData() {
             @Override
             public void getSpotSenseGeofencingData(String GeofenceTransactions, String geofenceName) {
 
