@@ -9,7 +9,7 @@
 ```groovy
 dependencies {
     ...
-     implementation 'com.spotsenseio:spotsense:1.0.0'
+     implementation 'com.spotsenseio:spotsense:1.0.1'
     ...
 }
 ```
@@ -22,13 +22,16 @@ import com.spotsense.interfaces.GetSpotSenseData;
 import com.spotsense.utils.sportSenseGeofencing.SpotSence;
 
 
-SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replace with your client Secret", new GetSpotSenseData() {
-    @Override
-    public void getSpotSenseGeofencingData(String GeofenceTransactions, ArrayList<String> GeofenceTransactionsRequestedId, String geofenceTransitionDetails) {
-    }
-    @Override
-    public void getSpotSenceBeaconData(String GeofenceTransactions, String geofenceTransitionDetails) {
-    }
+SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replace with your client Secret", new                             GetSpotSenseData() {
+            @Override
+            public void getSpotSenseGeofencingData(String GeofenceTransactions, String geofenceName) {
+
+            }
+
+            @Override
+            public void getSpotSenceBeaconData(String beaconTransactions, String beaconName) {
+
+            }
 });
 ```
 
