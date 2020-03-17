@@ -78,5 +78,4 @@ bintray {
             desc = libraryDescription
         }
     }
-     override = true
 }
