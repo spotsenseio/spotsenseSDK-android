@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpotSenseGeo {
+ public class SpotSenseGeo {
 
     public static ArrayList<Geofence> mGeofenceList = new ArrayList<>();
     public static ArrayList<GetBeaconRulesResponseModel.BeaconRulesBean> mBeaconeList = new ArrayList<>();
@@ -40,12 +40,9 @@ public class SpotSenseGeo {
         SpotSenseConstants.showNotification = showNotification;
         SpotSenseConstants.getSpotSenseData = getSpotSenseData;
 
-        //  mGeofencingClient = LocationServices.getGeofencingClient(context);
         mGeofenceList.clear();
-        //    mGeofenceList = new ArrayList<>();
         populateGeofenceList();
         populateBeaconList();
-        //02-01-2019  startMyServices();
 
     }
 
@@ -55,8 +52,7 @@ public class SpotSenseGeo {
             stopIntent.setAction("stopfroeground");
             context.startService(stopIntent);
             return;
-            // Intent myService = new Intent(context, LocationUpdatesService.class);
-            //   context.stopService(myService);
+
         }
 
         Log.e("checkrunning", "" + isMyServiceRunning(LocationUpdatesService.class));
@@ -110,7 +106,7 @@ public class SpotSenseGeo {
                 mGeofenceList.add(new Geofence.Builder()
                         // Set the request ID of the geofence. This is a string to identify this
                         // geofence.
-                        //04-01-2020  .setRequestId(mSpotSenseGeofenceList.get(i).getGeofenceName())
+                  
                         .setRequestId(jo.toString())
                         // Set the circular region of this geofence.
                         .setCircularRegion(

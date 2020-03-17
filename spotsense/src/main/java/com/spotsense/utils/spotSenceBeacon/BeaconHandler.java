@@ -38,7 +38,7 @@ public class BeaconHandler {
     private static final String TAG = BeaconHandler.class.getSimpleName();
     private BeaconManager beaconManager;
     Context context;
-    public static Map<String /* device address */, Long> deviceToBeaconMap = new HashMap<>();
+    public static Map<String , Long> deviceToBeaconMap = new HashMap<>();
     private static BeaconHandler beaconHandler_instance = null;
 
     public static BeaconHandler getInstance() {
@@ -54,7 +54,6 @@ public class BeaconHandler {
 
     public void initBeaconManager(Context context) {
 
-        Log.e("initbeaconmanagercalleds", "true");
         this.context = context;
         setbeaconManagerData(context);
     }
@@ -67,7 +66,6 @@ public class BeaconHandler {
             try {
                 if (mBeaconeList.size() > 0) {
                     for (int i = 0; i < mBeaconeList.size(); i++) {
-                        Log.e("mnnnnn", "" + mBeaconeList.get(i).getNamespace());
                         try {
 
                             Identifier namespaceId = Identifier.parse(mBeaconeList.get(i).getNamespace());
@@ -154,20 +152,6 @@ public class BeaconHandler {
                     deviceToBeaconMap.put(jo.getString("id"), System.currentTimeMillis());
                     doEnter(jo.getString("id"));
 
-                    try {
-                        DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm a");
-                        String date = df.format(Calendar.getInstance().getTime());
-                        Log.e("geofencenames", "Enterd: " + beaconName + " using Beacon" + date);
-                        SpotSence.mydb.insertContact("Enterd: " + beaconName + " using Beacon", date);
-
-
-                    } catch (Exception e) {
-
-                    }
-                    //end database
-
-
-                    Toast.makeText(context, "You Entered in " + beaconName + " using beacon", Toast.LENGTH_SHORT).show();
                     if (SpotSenseConstants.getSpotSenseData != null) {
                         SpotSenseConstants.getSpotSenseData.getSpotSenceBeaconData("Enter", "Enterd: " + beaconName + " using Beacon");
                     } else {
@@ -249,24 +233,6 @@ public class BeaconHandler {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-        //database
-
-        try {
-            DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm a");
-            String date = df.format(Calendar.getInstance().getTime());
-            Log.e("geofencenames", "Exited: " + beaconName + " using Beacon" + date);
-            SpotSence.mydb.insertContact("Exited: " + beaconName + " using Beacon", date);
-
-
-        } catch (Exception e) {
-
-        }
-        //end database
-
-
-        Toast.makeText(context, "You exited from " + beaconName + " using beacon", Toast.LENGTH_SHORT).show();
 
         if (SpotSenseConstants.getSpotSenseData != null) {
             SpotSenseConstants.getSpotSenseData.getSpotSenceBeaconData("Exit", "Exited: " + beaconName + " using Beacon");

@@ -18,19 +18,15 @@ import com.spotsense.R;
 import com.spotsense.data.network.APIHandler;
 import com.spotsense.data.network.APIInterface;
 import com.spotsense.data.network.ResponseCallback;
-import com.spotsense.data.network.model.GeoFenceDatabaseModel;
 import com.spotsense.data.network.model.requestModel.FetchTokenRequestModel;
 import com.spotsense.data.network.model.responseModel.FetchTokenResponseModel;
 import com.spotsense.data.network.model.responseModel.GetAppInfoResponseModel;
 import com.spotsense.data.network.model.responseModel.GetBeaconRulesResponseModel;
 import com.spotsense.data.network.model.responseModel.GetRulesResponseModel;
 import com.spotsense.interfaces.GetSpotSenseData;
-import com.spotsense.utils.DBHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -61,7 +57,6 @@ public class SpotSence {
     public static String token;
     final String eventName = "your.package.goes.here.EVENT";
 
-    public static DBHelper mydb;
     private APIHandler apiRequest;
     Context context;
     GetAppInfoResponseModel getAppInfoResponseModel;
@@ -70,8 +65,7 @@ public class SpotSence {
     GetSpotSenseData getSpotSenseData;
 
 
-    public SpotSence(Context context, String clientID, String clientSecret, GetSpotSenseData getSpotSenseData/*, Class myclass*/) {
-        mydb = new DBHelper(context);
+    public SpotSence(Context context, String clientID, String clientSecret, GetSpotSenseData getSpotSenseData) {
         this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.context = context;
@@ -80,9 +74,6 @@ public class SpotSence {
         this.getSpotSenseData = getSpotSenseData;
     }
 
-    public static List<GeoFenceDatabaseModel> getLocationArray() {
-        return mydb.getAllGeofenceData();
-    }
 
     public void start() {
         checkPermisionsAndGoToNext();
@@ -91,14 +82,6 @@ public class SpotSence {
     void checkPermisionsAndGoToNext() {
         final LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-       /* if (mBluetoothAdapter == null) {
-            // Device does not support Bluetooth
-        } else if (!mBluetoothAdapter.isEnabled()) {
-            // Bluetooth is not enabled :)
-        } else {
-            // Bluetooth is enabled
-        }*/
-
 
         //check location permission and gps status
         if (!isPermissionGranted() || !manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -146,12 +129,12 @@ public class SpotSence {
     };
 
 
-    public boolean isPermissionGranted() {
+    private boolean isPermissionGranted() {
         int permissionState = ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
         return permissionState == PackageManager.PERMISSION_GRANTED;
     }
 
-    public void checkPermission() {
+    private void checkPermission() {
 
         Intent i = new Intent(context, SpotSencePermissionActivity.class);
         context.startActivity(i);
@@ -250,30 +233,20 @@ public class SpotSence {
     }
 
 
-
     ResponseCallback responseCallback = new ResponseCallback() {
         @Override
         public void onSuccess(Object object, String name) {
             if (object != null) {
                 if (name.equalsIgnoreCase(GET_APP_INFO)) {
                     getAppInfoResponseModel = (GetAppInfoResponseModel) object;
-                    // Log.e("getappInfoResponse", "onFail" + getAppInfoResponseModel.getName());
                     userExists();
-                    //  getRules();
                 } else if (name.equalsIgnoreCase(GET_RULES)) {
 
                     getRulesResponseModel = (GetRulesResponseModel) object;
                     getBeaconRules();
-                    // SpotSenseGeo spotSenseGeo = new SpotSenseGeo(MainActivity.this, viewModel.mSpotSenseGeofenceList.getValue(), 15, "ChannelId", "Welcome Zak From Background", MainActivity.class, R.drawable.notification, R.mipmap.ic_launcher, true, this);
-                    //     userExists();
-                   /* SpotSenseGeo spotSenseGeo = new SpotSenseGeo(context, getRulesResponseModel.getRules(), 15, "ChannelId", "Welcome Zak From Background", myclass, R.drawable.notification, R.drawable.notification, true, getSpotSenseData);
-                    spotSenseGeo.addSpotSenseGeofences();*/
-                    //07-01-2019  userExists();
-                    //createUser();
                 } else if (name.equalsIgnoreCase(USER_EXITS)) {
                     if (!object.toString().contains("errorMessage")) {
                         getRules();
-                        //  getBeaconRules();
                     } else {
                         createUser();
                     }
@@ -292,7 +265,7 @@ public class SpotSence {
         public void onFail(Object object) {
 
             if (context != null) {
-                Toast.makeText(context, "OnFailApiCall", Toast.LENGTH_SHORT).show();
+                Log.e("OnFailApiCall", "True");
             }
         }
 

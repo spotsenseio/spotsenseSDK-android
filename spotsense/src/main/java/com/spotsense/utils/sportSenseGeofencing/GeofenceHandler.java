@@ -4,17 +4,14 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.spotsense.R;
-import com.spotsense.utils.SpotSenseAlertDialogUtils;
 import com.spotsense.utils.SpotSenseConstants;
-
-import timber.log.Timber;
 
 import static com.spotsense.utils.sportSenseGeofencing.SpotSenseGeo.mGeofenceList;
 
@@ -109,23 +106,11 @@ public class GeofenceHandler {
         @Override
         public void onComplete(Task task) {
 
-            // mPendingGeofenceTask = PendingGeofenceTask.NONE;
             if (task.isSuccessful()) {
                 updateGeofencesAdded(!getGeofencesAdded());
-//                setButtonsEnabledState();
-
-//                int messageId = getGeofencesAdded() ? R.string.geofences_added :
-//                        R.string.geofences_removed;
-
-                int messageId = R.string.geofences_added;
-
-//                Toast.makeText(this, context.getString(messageId), Toast.LENGTH_SHORT).show();
-
-                SpotSenseAlertDialogUtils.showToast(context, context.getString(messageId));
             } else {
-                // Get the status code for the error and log it using a user-friendly message.
                 String errorMessage = SpotSenseGeofenceErrorMessages.getErrorString(context, task.getException());
-                Timber.e(errorMessage);
+                Log.e("errorMessage",""+errorMessage);
             }
 
         }

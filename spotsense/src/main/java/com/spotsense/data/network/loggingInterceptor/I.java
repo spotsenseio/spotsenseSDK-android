@@ -2,7 +2,7 @@ package com.spotsense.data.network.loggingInterceptor;
 
 import android.util.Log;
 
-class I {
+public class I {
     static void Log(int type, String tag, String msg) {
         switch (type) {
             case Log.VERBOSE:

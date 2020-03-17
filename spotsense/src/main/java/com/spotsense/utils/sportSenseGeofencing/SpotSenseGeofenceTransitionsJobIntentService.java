@@ -43,7 +43,6 @@ import java.util.List;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import timber.log.Timber;
 
 import static com.spotsense.data.network.APIHandler.getApiServices;
 import static com.spotsense.utils.SpotSenseConstants.DO_ENTER;
@@ -99,12 +98,17 @@ public class SpotSenseGeofenceTransitionsJobIntentService extends JobIntentServi
             String geofenceTransitionDetails = getGeofenceTransitionDetails(geofenceTransition, triggeringGeofences);
 
 
-            ArrayList<String> triggeringGeofencesIdsList = new ArrayList<>();
+          //  ArrayList<String> triggeringGeofencesIdsList = new ArrayList<>();
             for (Geofence geofence : triggeringGeofences) {
                 try {
                     JSONObject jo = new JSONObject(geofence.getRequestId());
-                    triggeringGeofencesIdsList.add(jo.getString("name"));
+                  //  triggeringGeofencesIdsList.add(jo.getString("name"));
                     doEnter(jo.getString("id"));
+                    if (SpotSenseConstants.getSpotSenseData != null) {
+                        SpotSenseConstants.getSpotSenseData.getSpotSenseGeofencingData("" + getTransitionString(geofenceTransition), jo.getString("name"));
+                    } else {
+                        SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, jo.getString("name"), SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
+                    }
                 } catch (JSONException e) {
                     Log.e("jsonerrors", "true1" + e.getLocalizedMessage());
 
@@ -113,72 +117,30 @@ public class SpotSenseGeofenceTransitionsJobIntentService extends JobIntentServi
 
 //04-01-2020                triggeringGeofencesIdsList.add(geofence.getRequestId());
             }
-            try {
-                DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm a");
-                String date = df.format(Calendar.getInstance().getTime());
-                Log.e("geofencenames", geofenceTransitionDetails + date);
-                SpotSence.mydb.insertContact(geofenceTransitionDetails, date);
-
-
-            } catch (Exception e) {
-
-            }
-
-            if (SpotSenseConstants.getSpotSenseData != null) {
-                SpotSenseConstants.getSpotSenseData.getSpotSenseGeofencingData("" + getTransitionString(geofenceTransition), triggeringGeofencesIdsList, geofenceTransitionDetails);
-            } else {
-                SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, geofenceTransitionDetails, SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
-
-            }
-            // Send notification and log the transition details.
-         /*background 07-01-2019   if (SpotSenseConstants.showNotification) {
-                SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, geofenceTransitionDetails, SpotSenseConstants.NOTIFICATION_MESSAGE, SpotSenseConstants.sClass, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
-            }*/
-            Log.i(TAG, geofenceTransitionDetails);
-            Timber.e("geofenceTransitionDetails : " + geofenceTransitionDetails);
+                     Log.i(TAG, geofenceTransitionDetails);
+            Log.e("geofenceTransition",""+ geofenceTransitionDetails);
         } else if (geofenceTransition == Geofence.GEOFENCE_TRANSITION_EXIT) {
             List<Geofence> triggeringGeofences = geofencingEvent.getTriggeringGeofences();
 
             // Get the transition details as a String.
-            String geofenceTransitionDetails = getGeofenceTransitionDetails(geofenceTransition, triggeringGeofences);
+            //String geofenceTransitionDetails = getGeofenceTransitionDetails(geofenceTransition, triggeringGeofences);
 
-            ArrayList<String> triggeringGeofencesIdsList = new ArrayList<>();
             for (Geofence geofence : triggeringGeofences) {
                 try {
                     JSONObject jo = new JSONObject(geofence.getRequestId());
-                    triggeringGeofencesIdsList.add(jo.getString("name"));
+                  //  triggeringGeofencesIdsList.add(jo.getString("name"));
                     doExit(jo.getString("id"));
+                    if (SpotSenseConstants.getSpotSenseData != null) {
+                        SpotSenseConstants.getSpotSenseData.getSpotSenseGeofencingData("" + getTransitionString(geofenceTransition), jo.getString("name"));
+                    } else {
+                        SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, jo.getString("name"), SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
+                    }
                 } catch (JSONException e) {
                     Log.e("jsonerrors", "true2" + e.getLocalizedMessage());
                     e.printStackTrace();
                 }
-                Log.e("geofencenamesexit", geofenceTransitionDetails);
-                //04-01-2020 triggeringGeofencesIdsList.add(geofence.getRequestId());
             }
 
-            try {
-                DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm a");
-                String date = df.format(Calendar.getInstance().getTime());
-                Log.e("geofencenames", geofenceTransitionDetails + date);
-                SpotSence.mydb.insertContact(geofenceTransitionDetails, date);
-
-
-            } catch (Exception e) {
-
-            }
-
-            if (SpotSenseConstants.getSpotSenseData != null) {
-                SpotSenseConstants.getSpotSenseData.getSpotSenseGeofencingData("" + getTransitionString(geofenceTransition), triggeringGeofencesIdsList, geofenceTransitionDetails);
-            } else {
-                SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, geofenceTransitionDetails, SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
-
-            }
-            // Send notification and log the transition details.
-         /*background 07-01-2019   if (SpotSenseConstants.showNotification) {
-                SpotSenseGlobalMethods.sendNotification(getApplicationContext(), SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, geofenceTransitionDetails, SpotSenseConstants.NOTIFICATION_MESSAGE, SpotSenseConstants.sClass, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
-            }*/
-            Log.i(TAG, geofenceTransitionDetails);
-            Timber.e("geofenceTransitionDetails : " + geofenceTransitionDetails);
         } else {
             // Log the error.
             Log.e(TAG, getString(R.string.geofence_transition_invalid_type, geofenceTransition));

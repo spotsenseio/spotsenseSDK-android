@@ -12,6 +12,6 @@ public class PermissionReciver  extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Toast.makeText(context, "Action: " + intent.getAction(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "Action: " + intent.getAction(), Toast.LENGTH_SHORT).show();
     }
 }

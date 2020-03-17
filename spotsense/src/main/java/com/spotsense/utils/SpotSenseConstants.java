@@ -20,8 +20,6 @@ public class SpotSenseConstants {
 
     public static GetSpotSenseData getSpotSenseData;
     // API base URL
-//    let spotsenseURL = "https://hc5e9wpgpb.execute-api.us-west-1.amazonaws.com/dev"
-//    let spotsenseURL = "https://gu6a0ra3sg.execute-api.us-west-1.amazonaws.com/dev"
     public static String SPOT_SENCE_URL = "https://3o7us23hzl.execute-api.us-west-1.amazonaws.com/roor/";
     public static String GET_APP_INFO = "getAppInfo";
     public static String USER_EXITS = "userExist";

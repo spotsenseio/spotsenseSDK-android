@@ -28,7 +28,7 @@ import com.google.android.gms.tasks.Task;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
-public class SpotSencePermissionActivity extends Activity {
+ public class SpotSencePermissionActivity extends Activity {
     protected static final String TAG = "MonitoringActivity";
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     final static int REQUEST_LOCATION = 130;
@@ -41,8 +41,6 @@ public class SpotSencePermissionActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestPermission();
-        // launchEvent();
-        //   SpotSence.onPermissionsRequested(SpotSencePermissionActivity.this, false);
     }
 
     private void requestPermission() {
@@ -67,10 +65,8 @@ public class SpotSencePermissionActivity extends Activity {
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
 
-                Toast.makeText(SpotSencePermissionActivity.this, "addOnSuccessListener", Toast.LENGTH_SHORT).show();
 
                 setupScanner();
-                //  launchEvent(true);
 
             }
         });
@@ -78,7 +74,6 @@ public class SpotSencePermissionActivity extends Activity {
         task.addOnFailureListener(this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-// Toast.makeText(MainActivity.this, "addOnFailureListener", Toast.LENGTH_SHORT).show();
                 if (e instanceof ResolvableApiException) {
                     try {
                         ResolvableApiException resolvable = (ResolvableApiException) e;
@@ -108,11 +103,9 @@ public class SpotSencePermissionActivity extends Activity {
                         } else {
 
                             setupScanner();
-                            // launchEvent(true);
 
                         }
                     }
-                    // Snackbar.make(view, "Permission Granted, Now you can access location data and camera.", Snackbar.LENGTH_LONG).show();
                     else {
                         Log.e("isgpsproviderenabled11", "true");
                         launchEvent(false);
@@ -132,12 +125,6 @@ public class SpotSencePermissionActivity extends Activity {
         if (requestCode == REQUEST_LOCATION && resultCode == RESULT_OK) {
 
             setupScanner();
-            //   launchEvent(true);
-
-
-            //Toast.makeText(SpotSencePermissionActivity.this, "addOnSuccessListener1", Toast.LENGTH_SHORT).show();
-
-            //  AddSpotSenceGeo();
         } else if (requestCode == REQUEST_LOCATION && resultCode == RESULT_CANCELED) {
 
             launchEvent(false);
@@ -183,7 +170,6 @@ public class SpotSencePermissionActivity extends Activity {
             this.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BLUETOOTH);
         } else {
             launchEvent(true);
-            // setbeaconManagerData();
         }
     }
 

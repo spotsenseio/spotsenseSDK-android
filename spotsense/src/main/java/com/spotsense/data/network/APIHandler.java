@@ -24,7 +24,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import timber.log.Timber;
 
 
 public class APIHandler {
@@ -73,9 +72,6 @@ public class APIHandler {
                 .client(okHttpClient)
                 .build();
     }
-
-
-
 
 
     public static Retrofit getAuthClient() {
@@ -129,7 +125,7 @@ public class APIHandler {
                     public void onResponse(Call<T> call, Response<T> response) {
                         Log.e("onResponse", "true" + response.body());
                         if (response.body() != null) {
-                            Timber.e("responses" + response.body().toString());
+                            Log.e("responses",""+ response.body().toString());
                             callback.onSuccess(response.body(), name);
                         }
 
@@ -137,12 +133,14 @@ public class APIHandler {
 
                     @Override
                     public void onFailure(Call<T> call, Throwable t) {
-                        try{
+                        try {
                             if (context != null) {
-                                Toast.makeText(context, "Faild api call", Toast.LENGTH_SHORT).show();
+                             Log.e("faildapicalls","true");
+                                //   Toast.makeText(context, "Faild api call", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (Exception e){}
-                        Timber.e("responseserror" + t.getLocalizedMessage());
+                        } catch (Exception e) {
+                        }
+                        Log.e("responseserror",""+t.getLocalizedMessage());
                         callback.onFail(t.getMessage());
                     }
                 });
