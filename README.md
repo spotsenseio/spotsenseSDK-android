@@ -1,7 +1,7 @@
 #  SpotSense SDK
 
 ## AndroidX
-SpotSenceSdk ```v.1.0.1``` is a migration to androidX and dropping the support of older support library. There are no API changes. If you find any issue migrating to v.1.0.0 , please follow this [Guide](https://developer.android.com/jetpack/androidx/migrate).
+SpotSenceSdk ```v.1.0.1``` is a migration to androidX and dropping the support of older support library. There are no API changes. If you find any issue migrating to v.1.0.1 , please follow this [Guide](https://developer.android.com/jetpack/androidx/migrate).
 
 
 ## Getting Started
