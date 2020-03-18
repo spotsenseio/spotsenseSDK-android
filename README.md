@@ -51,3 +51,7 @@ spotSence.start();
 
 Have a question or got stuck? Let us know in the SpotSense Slack Community or shoot us an email (help@spotsense.io). We are happy to help!
 
+
+## NOTE
+if you facing Manifest merger failed issue then add tools:replace="android:name"  in your manifest application tag.
+
