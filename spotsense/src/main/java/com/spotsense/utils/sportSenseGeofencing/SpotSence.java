@@ -137,6 +137,7 @@ public class SpotSence {
     private void checkPermission() {
 
         Intent i = new Intent(context, SpotSencePermissionActivity.class);
+         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
     }
 
