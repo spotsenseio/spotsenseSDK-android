@@ -1,7 +1,7 @@
 #  SpotSense SDK
 
 ## AndroidX
-SpotSenceSdk ```v.1.0.1``` is a migration to androidX and dropping the support of older support library. There are no API changes. If you find any issue migrating to v.1.0.1 , please follow this [Guide](https://developer.android.com/jetpack/androidx/migrate).
+SpotSenseSdk ```v.1.0.1``` is a migration to androidX and dropping the support of older support library. There are no API changes. If you find any issue migrating to v.1.0.1 , please follow this [Guide](https://developer.android.com/jetpack/androidx/migrate).
 
 
 ## Getting Started
@@ -23,17 +23,17 @@ dependencies {
 3. `import spotsense` and initialize SpotSense with Client ID and Secret from the Dashboard
 ```java
 import com.spotsense.interfaces.GetSpotSenseData;
-import com.spotsense.utils.sportSenseGeofencing.SpotSence;
+import com.spotsense.utils.spotSenseGeofencing.SpotSense;
 
 
-SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replace with your client Secret", new GetSpotSenseData() {
+SpotSense spotSense = new SpotSense(this, "Replace with your client id", "Replace with your client Secret", new GetSpotSenseData() {
             @Override
             public void getSpotSenseGeofencingData(String GeofenceTransactions, String geofenceName) {
 
             }
 
             @Override
-            public void getSpotSenceBeaconData(String beaconTransactions, String beaconName) {
+            public void getSpotSenseBeaconData(String beaconTransactions, String beaconName) {
 
             }
 });
@@ -43,7 +43,7 @@ SpotSence spotSence = new SpotSence(this, "Replace with your client id", "Replac
 4. start geofence tracking and location tracking using below function
 
 ```java
-spotSence.start();
+spotSense.start();
 ```
 
 5. Select your new app and create a rule in the SpotSense Dashboard

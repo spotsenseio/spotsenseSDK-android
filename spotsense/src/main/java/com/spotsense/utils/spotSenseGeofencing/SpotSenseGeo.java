@@ -1,4 +1,4 @@
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.app.ActivityManager;
 import android.content.Context;

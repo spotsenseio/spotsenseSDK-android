@@ -1,4 +1,4 @@
-package com.spotsense.utils.spotSenceBeacon;
+package com.spotsense.utils.spotSenseBeacon;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import com.spotsense.data.network.ResponseCallback;
 import com.spotsense.data.network.model.responseModel.GetRulesResponseModel;
 import com.spotsense.utils.SpotSenseConstants;
 import com.spotsense.utils.SpotSenseGlobalMethods;
-import com.spotsense.utils.sportSenseGeofencing.SpotSence;
+import com.spotsense.utils.spotSenseGeofencing.SpotSense;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -30,9 +30,9 @@ import retrofit2.Call;
 import static com.spotsense.data.network.APIHandler.getApiServices;
 import static com.spotsense.utils.SpotSenseConstants.DO_ENTER_BEACON;
 import static com.spotsense.utils.SpotSenseConstants.DO_EXIT_BEACON;
-import static com.spotsense.utils.sportSenseGeofencing.SpotSence.clientID;
-import static com.spotsense.utils.sportSenseGeofencing.SpotSence.token;
-import static com.spotsense.utils.sportSenseGeofencing.SpotSenseGeo.mBeaconeList;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSense.clientID;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSense.token;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSenseGeo.mBeaconeList;
 
 public class BeaconHandler {
     private static final String TAG = BeaconHandler.class.getSimpleName();
@@ -153,7 +153,7 @@ public class BeaconHandler {
                     doEnter(jo.getString("id"));
 
                     if (SpotSenseConstants.getSpotSenseData != null) {
-                        SpotSenseConstants.getSpotSenseData.getSpotSenceBeaconData("Enter", "Enterd: " + beaconName + " using Beacon");
+                        SpotSenseConstants.getSpotSenseData.getSpotSenseBeaconData("Enter", "Enterd: " + beaconName + " using Beacon");
                     } else {
                         SpotSenseGlobalMethods.sendNotification(context, SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, "you entered in" + beaconName + "using beacon", SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
 
@@ -235,7 +235,7 @@ public class BeaconHandler {
         }
 
         if (SpotSenseConstants.getSpotSenseData != null) {
-            SpotSenseConstants.getSpotSenseData.getSpotSenceBeaconData("Exit", "Exited: " + beaconName + " using Beacon");
+            SpotSenseConstants.getSpotSenseData.getSpotSenseBeaconData("Exit", "Exited: " + beaconName + " using Beacon");
         } else {
             SpotSenseGlobalMethods.sendNotification(context, SpotSenseConstants.Notification_ID, SpotSenseConstants.CHANNEL_ID, "you exit from" + beaconName + "using beacon", SpotSenseConstants.NOTIFICATION_MESSAGE/*, SpotSenseConstants.sClass*/, SpotSenseConstants.smallIcon, SpotSenseConstants.largeIcon);
 
@@ -250,7 +250,7 @@ public class BeaconHandler {
         APIHandler apiRequest = new APIHandler();
         JSONObject jo = new JSONObject();
         try {
-            jo.put("userID", "" + clientID + "-" + SpotSence.deviceID);
+            jo.put("userID", "" + clientID + "-" + SpotSense.deviceID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -277,7 +277,7 @@ public class BeaconHandler {
         APIHandler apiRequest = new APIHandler();
         JSONObject jo = new JSONObject();
         try {
-            jo.put("userID", "" + clientID + "-" + SpotSence.deviceID);
+            jo.put("userID", "" + clientID + "-" + SpotSense.deviceID);
         } catch (JSONException e) {
             e.printStackTrace();
         }

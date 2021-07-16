@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.content.Context;
 import android.content.Intent;
@@ -47,8 +47,8 @@ import retrofit2.Call;
 import static com.spotsense.data.network.APIHandler.getApiServices;
 import static com.spotsense.utils.SpotSenseConstants.DO_ENTER;
 import static com.spotsense.utils.SpotSenseConstants.DO_EXIT;
-import static com.spotsense.utils.sportSenseGeofencing.SpotSence.clientID;
-import static com.spotsense.utils.sportSenseGeofencing.SpotSence.token;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSense.clientID;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSense.token;
 
 /**
  * Listener for geofence transition changes.
@@ -179,7 +179,7 @@ public class SpotSenseGeofenceTransitionsJobIntentService extends JobIntentServi
         APIHandler apiRequest = new APIHandler();
         JSONObject jo = new JSONObject();
         try {
-            jo.put("userID", "" + clientID + "-" + SpotSence.deviceID);
+            jo.put("userID", "" + clientID + "-" + SpotSense.deviceID);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -205,7 +205,7 @@ public class SpotSenseGeofenceTransitionsJobIntentService extends JobIntentServi
         APIHandler apiRequest = new APIHandler();
         JSONObject jo = new JSONObject();
         try {
-            jo.put("userID", "" + clientID + "-" + SpotSence.deviceID);
+            jo.put("userID", "" + clientID + "-" + SpotSense.deviceID);
         } catch (JSONException e) {
             e.printStackTrace();
         }

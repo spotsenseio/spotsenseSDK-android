@@ -66,7 +66,7 @@ public class APIHandler {
                 .create();
 
         return new Retrofit.Builder()
-                .baseUrl(SpotSenseConstants.SPOT_SENCE_URL)
+                .baseUrl(SpotSenseConstants.SPOT_SENSE_URL)
                 //  .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)

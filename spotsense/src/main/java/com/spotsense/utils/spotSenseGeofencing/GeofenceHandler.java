@@ -1,4 +1,4 @@
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.spotsense.utils.SpotSenseConstants;
 
-import static com.spotsense.utils.sportSenseGeofencing.SpotSenseGeo.mGeofenceList;
+import static com.spotsense.utils.spotSenseGeofencing.SpotSenseGeo.mGeofenceList;
 
 public class GeofenceHandler {
 

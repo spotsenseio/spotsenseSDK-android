@@ -1,4 +1,4 @@
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -44,13 +44,13 @@ import static com.spotsense.utils.SpotSenseConstants.USER_EXITS;
 /*
 ======================================================================================
 ======================================================================================
-= =>firststep Check token is exist or not if its not exist then call gettoken api    =
-= =>then call get info api for get informations pass token in api header             =
-= =>then call get rules api in get rules api you get geo fencing arraylist and all   =
+= =>firststep Check token exist or not. if not exist call gettoken api               =
+= =>then call get info api for get information pass token in api header              =
+= =>then call get rules api in get rules api you get geofencing arraylist and all    =
 ======================================================================================
 ======================================================================================*/
 
-public class SpotSence {
+public class SpotSense {
     public static String clientID;
     public static String clientSecret;
     public static String deviceID;
@@ -65,7 +65,7 @@ public class SpotSence {
     GetSpotSenseData getSpotSenseData;
 
 
-    public SpotSence(Context context, String clientID, String clientSecret, GetSpotSenseData getSpotSenseData) {
+    public SpotSense(Context context, String clientID, String clientSecret, GetSpotSenseData getSpotSenseData) {
         this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.context = context;
@@ -88,12 +88,12 @@ public class SpotSence {
             registerEventReceiver();
             checkPermission();
         }
-        //check blututh is supported or not in device
+        //check if bluetooth is supported or not for the device
         else if (mBluetoothAdapter == null) {
-            Toast.makeText(context, "Device does not support Bluetooth so beacon nopt work for this device", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Device does not support Bluetooth. Beacons will not work for this device", Toast.LENGTH_SHORT).show();
             initApp();
         }
-        //check blututh on or not status
+        //check if bluetooth is on or off
         else if (!mBluetoothAdapter.isEnabled()) {
             registerEventReceiver();
             checkPermission();
@@ -136,7 +136,7 @@ public class SpotSence {
 
     private void checkPermission() {
 
-        Intent i = new Intent(context, SpotSencePermissionActivity.class);
+        Intent i = new Intent(context, SpotSensePermissionActivity.class);
          i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
     }
@@ -196,7 +196,7 @@ public class SpotSence {
     //check user already exits or not
     void userExists() {
         apiRequest = new APIHandler();
-        String uid = "" + clientID + "-" + SpotSence.deviceID;
+        String uid = "" + clientID + "-" + SpotSense.deviceID;
         Call<Object> requestCall = getApiServices(token).userExist("" + clientID, uid);
         apiRequest.CommonAPI(context, requestCall, responseCallback, USER_EXITS);
 
@@ -206,7 +206,7 @@ public class SpotSence {
         apiRequest = new APIHandler();
         JSONObject jo = new JSONObject();
         try {
-            jo.put("deviceID", SpotSence.deviceID);
+            jo.put("deviceID", SpotSense.deviceID);
             jo.put("customID", "Waddup from the SDK Playground");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -214,6 +214,22 @@ public class SpotSence {
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (jo).toString());
 
         Call<Object> requestCall = getApiServices(token).createUser("" + clientID, body);
+        apiRequest.CommonAPI(context, requestCall, responseCallback, USER_CREATE);
+
+    }
+
+    void updateLocation() {
+        apiRequest = new APIHandler();
+        JSONObject jo = new JSONObject();
+        try {
+            jo.put("deviceID", SpotSense.deviceID);
+            jo.put("location", "<+30.26297701,-97.73160763> +/- 40.26m (speed 0.00 mps / course 251.13) @ 6/15/21,");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (jo).toString());
+
+        Call<Object> requestCall = getApiServices(token).updateLocation("" + clientID, body);
         apiRequest.CommonAPI(context, requestCall, responseCallback, USER_CREATE);
 
     }

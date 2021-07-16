@@ -1,40 +1,40 @@
-package com.spotsencesdk.ui.activity;
+package com.spotsensesdk.ui.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.spotsencesdk.R;
-import com.spotsencesdk.utils.GlobalMethods;
+import com.spotsensesdk.R;
+import com.spotsensesdk.utils.GlobalMethods;
 import com.spotsense.interfaces.GetSpotSenseData;
-import com.spotsense.utils.sportSenseGeofencing.SpotSence;
+import com.spotsense.utils.spotSenseGeofencing.SpotSense;
 
 
 public class MainActivity extends AppCompatActivity implements GetSpotSenseData {
 
 
     private String ChannelId = "ChannelId";
-    SpotSence spotSence;
+    SpotSense spotSense;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        AddSpotSenceGeo();
+        AddSpotSenseGeo();
 
     }
 
 
-    public void AddSpotSenceGeo() {
-        spotSence = new SpotSence(this, "clientIds", "ClientSecrate", MainActivity.this);//sagar ifuturz
-        spotSence.start();
+    public void AddSpotSenseGeo() {
+        spotSense = new SpotSense(this, "clientIds", "ClientSecret", MainActivity.this);//sagar ifuturz
+        spotSense.start();
 
     }
 
     @Override
-    public void getSpotSenceBeaconData(String beaconTransactions, String beaconName) {
+    public void getSpotSenseBeaconData(String beaconTransactions, String beaconName) {
         if (beaconTransactions.equalsIgnoreCase("Enter")) {
             GlobalMethods.sendNotification(MainActivity.this, 14, ChannelId, beaconName, "Welcome Zak using beacone", MainActivity.class, R.drawable.notification, R.drawable.notification);
         } else {

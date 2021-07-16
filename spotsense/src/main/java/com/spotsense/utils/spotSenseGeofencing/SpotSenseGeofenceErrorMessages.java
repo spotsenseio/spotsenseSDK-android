@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.content.Context;
 import android.content.res.Resources;

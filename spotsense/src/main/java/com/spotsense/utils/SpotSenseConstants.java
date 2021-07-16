@@ -20,7 +20,7 @@ public class SpotSenseConstants {
 
     public static GetSpotSenseData getSpotSenseData;
     // API base URL
-    public static String SPOT_SENCE_URL = "https://3o7us23hzl.execute-api.us-west-1.amazonaws.com/roor/";
+    public static String SPOT_SENSE_URL = "https://3o7us23hzl.execute-api.us-west-1.amazonaws.com/roor/";
     public static String GET_APP_INFO = "getAppInfo";
     public static String USER_EXITS = "userExist";
     public static String USER_CREATE = "userCreate";

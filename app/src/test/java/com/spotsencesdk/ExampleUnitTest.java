@@ -1,4 +1,4 @@
-package com.spotsencesdk;
+package com.spotsensesdk;
 
 import org.junit.Test;
 

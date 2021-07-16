@@ -41,7 +41,8 @@ public interface APIInterface {
     @POST("{id}/users/")
     Call<Object> createUser(@Path("id") String id, @Body RequestBody requestBody);
 
-
+    @POST("{id}/locations")
+    Call<Object> updateLocation(@Path("id") String id, @Body RequestBody requestBody);
 
     @POST("{id}/beaconRules/{ruleId}/enter")
     Call<GetRulesResponseModel> beaconEnter(@Path("id") String id, @Path("ruleId") String ruleId, @Body RequestBody requestBody);

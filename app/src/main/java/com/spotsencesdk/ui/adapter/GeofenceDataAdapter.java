@@ -1,4 +1,4 @@
-package com.spotsencesdk.ui.adapter;
+package com.spotsensesdk.ui.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.spotsencesdk.R;
+import com.spotsensesdk.R;
 import com.spotsense.data.network.model.GeoFenceDatabaseModel;
 
 import java.util.List;

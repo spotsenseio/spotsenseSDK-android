@@ -1,4 +1,4 @@
-package com.spotsencesdk.utils;
+package com.spotsensesdk.utils;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
