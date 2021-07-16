@@ -46,8 +46,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.spotsense.utils.Utils;
-import com.spotsense.utils.sportSenseGeofencing.GeofenceHandler;
-import com.spotsense.utils.spotSenceBeacon.BeaconHandler;
+import com.spotsense.utils.spotSenseGeofencing.GeofenceHandler;
+import com.spotsense.utils.spotSenseBeacon.BeaconHandler;
 
 /**
  * A bound and started service that is promoted to a foreground service when location updates have
@@ -182,14 +182,14 @@ public class LocationUpdatesService extends Service /*implements BeaconConsumer*
 
       /*  if (SpotSenseConstants.getSpotSenseData == null) {
             Log.e("servicestatus", "true nul");
-            SpotSence spotSence = new SpotSence(getApplicationContext(), "lidba0lbjl2Zgh4fg9rUED0D7nDn2Igp", "9NeAKLbmbkFXpEFOk8q2D1rb-IduEZXNzUX-aaeoFYgsguqI_kIfP3gFsQtBpH18", new GetSpotSenseData() {
+            SpotSense spotSense = new SpotSense(getApplicationContext(), "lidba0lbjl2Zgh4fg9rUED0D7nDn2Igp", "9NeAKLbmbkFXpEFOk8q2D1rb-IduEZXNzUX-aaeoFYgsguqI_kIfP3gFsQtBpH18", new GetSpotSenseData() {
                 @Override
                 public void getSpotSenseGeofencingData(String GeofenceTransactions, ArrayList<String> GeofenceTransactionsRequestedId, String geofenceTransitionDetails) {
 
                 }
             }, LocationUpdatesService.class);
 
-            spotSence.start();
+            spotSense.start();
         } else {
             Log.e("servicestatus", "true notnull");
 */
@@ -475,7 +475,7 @@ public class LocationUpdatesService extends Service /*implements BeaconConsumer*
                         servicePendingIntent)*/
                 //removedbysagar.setContentText(text)
                 .setVibrate(new long[]{0L}).
-                        setSound(null).setContentTitle("Spotsence Running")
+                        setSound(null).setContentTitle("spotSense Running")
                 // .setContentTitle(Utils.getLocationTitle(this))
                 .setOngoing(true)
                 .setPriority(Notification.PRIORITY_HIGH)

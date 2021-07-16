@@ -4,7 +4,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 
 
 ext {
-    bintrayRepo = 'Spotsence'
+    bintrayRepo = 'spotSense'
     bintrayName = 'spotsense'
 
     publishedGroupId = 'com.spotsenseio'

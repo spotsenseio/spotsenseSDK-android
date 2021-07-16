@@ -1,4 +1,4 @@
-package com.spotsense.utils.sportSenseGeofencing;
+package com.spotsense.utils.spotSenseGeofencing;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -28,7 +28,7 @@ import com.google.android.gms.tasks.Task;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
- public class SpotSencePermissionActivity extends Activity {
+ public class SpotSensePermissionActivity extends Activity {
     protected static final String TAG = "MonitoringActivity";
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     final static int REQUEST_LOCATION = 130;
@@ -77,7 +77,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
                 if (e instanceof ResolvableApiException) {
                     try {
                         ResolvableApiException resolvable = (ResolvableApiException) e;
-                        resolvable.startResolutionForResult(SpotSencePermissionActivity.this,
+                        resolvable.startResolutionForResult(SpotSensePermissionActivity.this,
                                 REQUEST_LOCATION);
                     } catch (IntentSender.SendIntentException sendEx) {
 // Ignore the error.

@@ -9,25 +9,25 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application android:name="com.spotsense.SpotSenseSDKApplication"         android:usesCleartextTraffic="true">
-        <activity android:name="com.spotsense.utils.sportSenseGeofencing.SpotSencePermissionActivity"
+        <activity android:name="com.spotsense.utils.spotSenseGeofencing.SpotSensePermissionActivity"
             android:theme="@style/TransparentTheme"></activity>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <receiver android:name="com.spotsense.utils.sportSenseGeofencing.PermissionReciver" >
+        <receiver android:name="com.spotsense.utils.spotSenseGeofencing.PermissionReciver" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
         <receiver
-            android:name="com.spotsense.utils.sportSenseGeofencing.SpotSenseGeofenceBroadcastReceiver"
+            android:name="com.spotsense.utils.spotSenseGeofencing.SpotSenseGeofenceBroadcastReceiver"
             android:enabled="true"
             android:exported="true" />
 
         <service
-            android:name="com.spotsense.utils.sportSenseGeofencing.SpotSenseGeofenceTransitionsJobIntentService"
+            android:name="com.spotsense.utils.spotSenseGeofencing.SpotSenseGeofenceTransitionsJobIntentService"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 

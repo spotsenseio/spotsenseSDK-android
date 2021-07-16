@@ -1,2 +1,2 @@
 include ':app', ':spotsense'
-rootProject.name='SpotSenceSDK'
+rootProject.name='SpotSenseSDK'

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SpotSenceSDK</string>
+    <string name="app_name">SpotSenseSDK</string>
     <string name="add_geofencing">Add Geofencing</string>
     <string name="exit_geofencing">Exit Geofencing</string>
     <string name="remove_geofencing">Remove Geofencing</string>
