@@ -6,12 +6,14 @@ import android.content.ServiceConnection;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.spotsense.data.network.APIHandler;
 import com.spotsense.data.network.ResponseCallback;
 import com.spotsense.data.network.model.responseModel.GetRulesResponseModel;
 import com.spotsense.utils.SpotSenseConstants;
 import com.spotsense.utils.SpotSenseGlobalMethods;
 import com.spotsense.utils.spotSenseGeofencing.SpotSense;
+
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
@@ -20,13 +22,16 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.Region;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+
 import okhttp3.RequestBody;
 import retrofit2.Call;
+
 import static com.spotsense.data.network.APIHandler.getApiServices;
 import static com.spotsense.utils.SpotSenseConstants.DO_ENTER_BEACON;
 import static com.spotsense.utils.SpotSenseConstants.DO_EXIT_BEACON;
@@ -38,7 +43,7 @@ public class BeaconHandler {
     private static final String TAG = BeaconHandler.class.getSimpleName();
     private BeaconManager beaconManager;
     Context context;
-    public static Map<String , Long> deviceToBeaconMap = new HashMap<>();
+    public static Map<String, Long> deviceToBeaconMap = new HashMap<>();
     private static BeaconHandler beaconHandler_instance = null;
 
     public static BeaconHandler getInstance() {
@@ -61,7 +66,7 @@ public class BeaconHandler {
     BeaconConsumer beaconConsumer = new BeaconConsumer() {
         @Override
         public void onBeaconServiceConnect() {
-            beaconManager.removeAllMonitorNotifiers();
+//            beaconManager.removeAllMonitorNotifiers();
 
             try {
                 if (mBeaconeList.size() > 0) {
@@ -81,7 +86,7 @@ public class BeaconHandler {
                         }
 
                     }
-                    beaconManager.addMonitorNotifier(mn);
+                    beaconManager.setMonitorNotifier(mn);
                     Log.e("mbeaconstatus", "greaterthen0");
                 } else {
                     Log.e("mbeaconstatus", "notgreaterthen0");
@@ -115,19 +120,18 @@ public class BeaconHandler {
         //deviceToBeaconMap.clear();
         beaconManager = BeaconManager.getInstanceForApplication(context);
 
-        beaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
-        beaconManager.setDebug(true);
-        beaconManager.setRegionStatePersistenceEnabled(false);
+        beaconManager.getBeaconParsers().addAll(beaconManager.getBeaconParsers());
+        BeaconManager.setDebug(true);
+//        beaconManager.setRegionStatePersistenceEnabled(false);
         beaconManager.setForegroundBetweenScanPeriod(25000L);
         beaconManager.setForegroundScanPeriod(10000L);
 
-        beaconManager.setMaxTrackingAge(10000);
-        beaconManager.setRegionExitPeriod(10000L);
+        beaconManager.setBackgroundScanPeriod(10000);
+        beaconManager.setBackgroundBetweenScanPeriod(10000L);
         beaconManager.setBackgroundMode(false);
 //        beaconManager.setBackgroundScanPeriod(10000L);
         //      beaconManager.setBackgroundBetweenScanPeriod(25000L);
-        beaconManager.setAndroidLScanningDisabled(true);
+        BeaconManager.setAndroidLScanningDisabled(true);
 
         beaconManager.bind(beaconConsumer);
     }
@@ -160,7 +164,7 @@ public class BeaconHandler {
                     }
 
 
-                    Log.e(TAG + "enter", "I just saw an beacon for the first time!" + "asasasuuui" + "getUniqueId" + region.getUniqueId() + "getBluetoothAddress" + region.getBluetoothAddress() + "getId1" + region.getId1() + "getId2" + region.getId2() + "getId3" + region.getId3() + "desk" + region.describeContents());
+                    Log.e(TAG + "enter", "I just saw an beacon for the first time!" + "asasasuuui" + "getUniqueId" + region.getUniqueId() + "getId1" + region.getId1() + "getId2" + region.getId2() + "getId3" + region.getId3() + "desk" + region.describeContents());
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -241,7 +245,7 @@ public class BeaconHandler {
 
         }
 
-        Log.e(TAG + "exit", "I no longer see an beacon" + region.getUniqueId() + "sasa" + region.getUniqueId() + "sasasasa" + region.getBluetoothAddress() + "Asasasasa" + region.getId1() + "asasasa" + region.getId2() + "Asasasa" + region.getId3());
+        Log.e(TAG + "exit", "I no longer see an beacon" + region.getUniqueId() + "sasa" + region.getUniqueId() + "Asasasasa" + region.getId1() + "asasasa" + region.getId2() + "Asasasa" + region.getId3());
 
     }
 

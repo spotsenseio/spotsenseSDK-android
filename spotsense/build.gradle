@@ -32,7 +32,6 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
 
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
@@ -53,6 +52,10 @@ android {
     flavorDimensions parent.name
     tasks.withType(Javadoc).all {
         enabled=false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -80,7 +83,7 @@ dependencies {
 
 
     //beacon
-    implementation 'org.altbeacon:android-beacon-library:2+'
+    implementation 'org.altbeacon:android-beacon-library:2.1'
 }
 
 apply from: 'https://raw.githubusercontent.com/spotsenseio/spotsenseSDK-android/master/script.gradle'
