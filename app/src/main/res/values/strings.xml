@@ -6,6 +6,9 @@
 
     <string name="please_wait">Please wait</string>
 
-
     <string name="permission_rationale">Location permission is needed for core functionality</string>
+
+    // test credentials
+    <string name="testClientID">s63HFHDdAUIDKnDdWCKWlcPORnTMvupH</string>
+    <string name="testClientSecret">3Q46H0d7oqMiCthFSoHt46KSRGxAZc6nEmluc6-_Ru8ngaZ-TFJnzfVwTre7QtYT</string>
 </resources>

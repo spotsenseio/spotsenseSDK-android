@@ -1,45 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
-
-
-ext {
-    bintrayRepo = 'spotSense'
-    bintrayName = 'spotsense'
-
-    publishedGroupId = 'com.spotsenseio'
-    libraryName = 'SpotSense'
-    artifact = 'spotsense'
-
-    libraryDescription = 'SDK to be used with SpotSense, a web app and mobile SDK for adding geofences to mobile apps'
-
-    siteUrl = 'https://github.com/spotsenseio/spotsenseSDK-android'
-    gitUrl = 'https://github.com/spotsenseio/spotsenseSDK-android.git'
-
-    libraryVersion = '1.0.1'
-
-    developerId = 'smitiverve'
-    developerName = 'Smit Patel'
-    developerEmail = 'smit.patel@ifuturz.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
-
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    namespace 'com.app.spotsense'
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.1"
-
+        minSdk 26
+        targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -48,42 +20,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    flavorDimensions parent.name
-    tasks.withType(Javadoc).all {
-        enabled=false
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-//    Material Designing
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    // App Logging
-    //  implementation 'com.jakewharton.timber:timber:4.7.1'
-
     // GeoFencing
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.android.gms:play-services-maps:16.0.0'
-
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
 
     //beacon
-    implementation 'org.altbeacon:android-beacon-library:2.1'
+    implementation 'org.altbeacon:android-beacon-library:2.20.3'
 }
-
-apply from: 'https://raw.githubusercontent.com/spotsenseio/spotsenseSDK-android/master/script.gradle'
